@@ -1,0 +1,3 @@
+/home/yy/CS106B/Chapter3/testStrlib/build/CMakeFiles/rebuild_cache.dir
+/home/yy/CS106B/Chapter3/testStrlib/build/CMakeFiles/edit_cache.dir
+/home/yy/CS106B/Chapter3/testStrlib/build/CMakeFiles/testStrlib.dir

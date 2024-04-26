@@ -1,0 +1,4 @@
+/home/yy/CS106B/SourceCode/build/CMakeFiles/edit_cache.dir
+/home/yy/CS106B/SourceCode/build/CMakeFiles/hello.dir
+/home/yy/CS106B/SourceCode/build/CMakeFiles/rebuild_cache.dir
+/home/yy/CS106B/SourceCode/build/CMakeFiles/error_lib.dir

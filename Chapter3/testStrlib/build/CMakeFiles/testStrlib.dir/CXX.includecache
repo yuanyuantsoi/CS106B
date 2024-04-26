@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yy/CS106B/Chapter3/testStrlib/testStrlib.cpp
+iostream
+-
+strlib.h
+/home/yy/CS106B/Chapter3/testStrlib/strlib.h
+simpio.h
+/home/yy/CS106B/Chapter3/testStrlib/simpio.h
+
+/home/yy/CS106B/StanforLib/StanforLib/cpplib/include/simpio.h
+string
+-
+
+/home/yy/CS106B/StanforLib/StanforLib/cpplib/include/strlib.h
+iostream
+-
+string
+-
+

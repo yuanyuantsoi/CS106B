@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/CountLetters.dir/src/CountLetters.cpp.o  -o ../bin/CountLetters   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

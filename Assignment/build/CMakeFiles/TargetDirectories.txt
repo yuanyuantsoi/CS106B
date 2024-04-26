@@ -1,0 +1,5 @@
+/home/yy/CS106B/Assignment/build/CMakeFiles/rebuild_cache.dir
+/home/yy/CS106B/Assignment/build/CMakeFiles/CountLetters.dir
+/home/yy/CS106B/Assignment/build/CMakeFiles/score.dir
+/home/yy/CS106B/Assignment/build/CMakeFiles/edit_cache.dir
+/home/yy/CS106B/Assignment/build/CMakeFiles/CensorString.dir

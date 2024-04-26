@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(testStrlib)
+include_directories($ENV{HEADER_PATH_STANFORD_LIB})
+link_directories($ENV{LIB_PATH_STANFORD_LIB})
+link_libraries($ENV{LIB_NAME_STANFORD_LIB})
+set(HOME /home/yy/CS106B/Chapter3/testStrlib)
+set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)
+add_executable(testStrlib testStrlib.cpp)

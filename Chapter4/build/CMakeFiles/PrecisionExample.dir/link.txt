@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/PrecisionExample.dir/src/PrecisionExample.cpp.o  -o ../bin/PrecisionExample   -L/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

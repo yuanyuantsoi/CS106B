@@ -1,0 +1,4 @@
+/home/yy/CS106B/Chapter4/build/CMakeFiles/rebuild_cache.dir
+/home/yy/CS106B/Chapter4/build/CMakeFiles/edit_cache.dir
+/home/yy/CS106B/Chapter4/build/CMakeFiles/ShowFileContents.dir
+/home/yy/CS106B/Chapter4/build/CMakeFiles/PrecisionExample.dir

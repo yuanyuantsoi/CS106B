@@ -1,0 +1,3 @@
+/home/yy/CS106B/SourceCode/GraphicsExample/build/CMakeFiles/rebuild_cache.dir
+/home/yy/CS106B/SourceCode/GraphicsExample/build/CMakeFiles/edit_cache.dir
+/home/yy/CS106B/SourceCode/GraphicsExample/build/CMakeFiles/app.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/ShowFileContents.dir/src/ShowFileContents.cpp.o  -o ../bin/ShowFileContents   -L/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

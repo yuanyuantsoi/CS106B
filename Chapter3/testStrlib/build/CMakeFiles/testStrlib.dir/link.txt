@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/testStrlib.dir/testStrlib.cpp.o  -o ../bin/testStrlib   -L/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

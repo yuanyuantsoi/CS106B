@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.0.0)
+project(error)
+include_directories(/home/yy/CS106B/SourceCode/include)
+add_library(error_lib SHARED error.cpp)
+add_executable(hello hello.cpp)
+target_link_libraries(hello error_lib)

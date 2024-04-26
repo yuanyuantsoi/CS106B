@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yy/CS106B/Assignment/src/CensorString.cpp
+iostream
+-
+string
+-
+cctype
+-
+simpio.h
+/home/yy/CS106B/Assignment/src/simpio.h
+
+/home/yy/CS106B/cpplib/include/simpio.h
+string
+-
+

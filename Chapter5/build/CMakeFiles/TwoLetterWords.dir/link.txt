@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/TwoLetterWords.dir/src/TwoLetterWords.cpp.o  -o ../bin/TwoLetterWords   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 
