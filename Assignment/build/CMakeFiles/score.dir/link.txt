@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/score.dir/src/Scores.cpp.o  -o ../bin/score   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 
