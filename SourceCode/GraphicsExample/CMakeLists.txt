@@ -1,8 +1,0 @@
-cmake_minimum_required(VERSION 3.0)
-project(GraphicsExample)
-include_directories(/home/yy/CS106B/StanforLib/StanforLib/cpplib/include)
-link_directories(/home/yy/CS106B/StanforLib/StanforLib/cpplib/lib)
-link_libraries(libStanfordCPPLib.a)
-set(HOME /home/yy/CS106B/SourceCode/GraphicsExample)
-set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)
-add_executable(app GraphicsExample.cpp)
