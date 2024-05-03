@@ -1,4 +1,12 @@
+#忽略mac存储类文件
 .DS_Store
-*/build/*
-*/bin/*
-*/cpplib/*
+
+#忽略build文件夹下的内容
+*/build/
+
+
+#忽略bin文件夹下的内容
+*/bin/
+
+#忽略cpplib文件夹下的内容
+/cpplib/
