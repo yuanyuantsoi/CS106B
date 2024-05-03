@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/ex01.dir/src/ex01.cpp.o  -o ../bin/ex01   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

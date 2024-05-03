@@ -1,4 +1,0 @@
-/home/yy/CS106B/Chapter1/build/CMakeFiles/rebuild_cache.dir
-/home/yy/CS106B/Chapter1/build/CMakeFiles/edit_cache.dir
-/home/yy/CS106B/Chapter1/build/CMakeFiles/ex01.dir
-/home/yy/CS106B/Chapter1/build/CMakeFiles/hello.dir
