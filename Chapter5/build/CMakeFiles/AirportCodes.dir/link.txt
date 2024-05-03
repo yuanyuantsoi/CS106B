@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/AirportCodes.dir/src/AirportCodes.cpp.o  -o ../bin/AirportCodes   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

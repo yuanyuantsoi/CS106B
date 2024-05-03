@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/LetterFrequency.dir/src/LetterFrequency.cpp.o  -o ../bin/LetterFrequency   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

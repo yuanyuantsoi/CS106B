@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/ReverseFile_cp.dir/src/ReverseFile_cp.cpp.o  -o ../bin/ReverseFile_cp   -L/home/yy/CS106B/cpplib/lib  -Wl,-rpath,/home/yy/CS106B/cpplib/lib -Wl,-Bstatic -lStanfordCPPLib -Wl,-Bdynamic 

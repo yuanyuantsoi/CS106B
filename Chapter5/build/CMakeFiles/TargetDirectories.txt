@@ -1,9 +1,0 @@
-/home/yy/CS106B/Chapter5/build/CMakeFiles/edit_cache.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/testEnglishDat.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/TwoLetterWords.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/AirportCodes.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/CheckoutLine.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/rebuild_cache.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/RPNCalculator.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/LetterFrequency.dir
-/home/yy/CS106B/Chapter5/build/CMakeFiles/ReverseFile.dir
