@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.0)
+project(MYLIB)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+add_library(combinatorics STATIC ./src/combinatorics.cpp)
