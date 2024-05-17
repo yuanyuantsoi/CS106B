@@ -10,3 +10,6 @@
 
 #忽略cpplib文件夹下的内容
 /cpplib/
+
+#忽略myLib文件夹下的内容
+/myLib/
