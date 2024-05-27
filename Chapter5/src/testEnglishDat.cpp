@@ -8,16 +8,21 @@
 #include <string>
 #include <cctype>
 #include "simpio.h"
+#include "set.h"
 #include "lexicon.h"
 using namespace std;
 
 int main() {
-	string word = getLine("> ");
 	Lexicon english("EnglishWords.dat");
-	if (english.contains(word)) {
-		cout << word << " is contained in the lexicon." << endl;
-	} else {
-		cout << word << " is not contained in the lexicon." << endl;
+	string word = "xx";
+	for (char c0 = 'a'; c0 <= 'z'; c0++) {
+		word[0] = c0;
+		for (char c1 = 'a'; c1 <= 'z'; c1++) {
+			word[1] = c1;
+			if (english.contains(word)) {
+				cout << word << endl;
+			}
+		}
 	}
 	return 0;
 }
