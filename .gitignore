@@ -13,3 +13,6 @@
 
 #忽略myLib文件夹下的内容
 /myLib/
+
+#忽略mac压缩文件
+__MACOSX
