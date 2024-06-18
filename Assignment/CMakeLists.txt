@@ -19,3 +19,5 @@ add_executable(chaosgame ${HOME}/src/ChaosGame.cpp)
 add_executable(removespam ${HOME}/src/RemoveSpam.cpp)
 add_executable(rvsqueue ${HOME}/src/ReverseQueue.cpp)
 add_executable(countbomb ${HOME}/src/mineSweeper.cpp)
+
+add_executable(randomwriter ${HOME}/src/RandomWriter.cpp)
