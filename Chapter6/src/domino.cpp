@@ -5,6 +5,8 @@
  */
 
 #include <string>
+#include <iostream>
+#include <cstdlib>
 #include "error.h"
 #include "domino.h"
 #include "strlib.h"

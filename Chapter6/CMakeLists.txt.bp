@@ -7,17 +7,17 @@ set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)
 
 include_directories(
 	${HOME}/../cpplib/include
-	)
+	${HOME}/../myLib/include)
 
 link_directories(
 	${HOME}/../cpplib/lib
-	)
+	${HOMe}/../myLib/lib)
 
 set(MY_STATIC_LIBRARIES
-	${HOME}/../cpplib/lib/libStanfordCPPLib.a
-	)
+	${HOME}/../myLib/lib/libdomino.a
+	${HOME}/../cpplib/lib/libStanfordCPPLib.a)
 
-add_executable(ex01 ${HOME}/src/ex01.cpp ${HOME}/src/domino.cpp)
+add_executable(ex01 ${HOME}/src/ex01.cpp)
 
 target_link_libraries(ex01 PRIVATE ${MY_STATIC_LIBRARIES})
 
