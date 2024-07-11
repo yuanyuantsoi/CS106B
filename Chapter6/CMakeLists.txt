@@ -4,6 +4,7 @@ project(Chapter6)
 
 set(HOME ${CMAKE_SOURCE_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)
+set(CMAKE_CXX_STANDARD 11)
 
 include_directories(
 	${HOME}/../cpplib/include
