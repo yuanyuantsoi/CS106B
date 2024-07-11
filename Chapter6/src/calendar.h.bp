@@ -1,0 +1,128 @@
+/*
+ * File: calendar.h
+ * -------------------------------
+ *  This interface exports an enumerated type called Month whose
+ *  elements are the 12 months
+ *  Chapter6-ex5 Exports a Date class.
+ */
+
+#ifndef _calendar_h
+#define _calendar_h
+
+#include <string>
+#include <iostream>
+
+/*
+ * Type: Month
+ * ----------------
+ *  This enumerated typed is used to represent the 12 month.
+ */
+
+enum Month { 
+	JANUARY = 1, 
+	FEBRUARY, 
+	MARCH, 
+	APRIL, 
+	MAY, 
+	JUNE, 
+	JULY, 
+	AUGUST, 
+	SEPTEMBER, 
+	OCTOBER, 
+	NOVEMBER, 
+	DECEMBER};
+
+/*
+ * Function: daysInMonth
+ * Usage: int days = daysInMonth(month, year);
+ * ----------------------------------------------
+ *  Returns the num of days in that month.
+ */
+
+int daysInMonth(Month month, int year);
+
+/*
+ * Function: isLeapYear
+ * Usage: bool isLeapYear(year);
+ * -------------------------------------
+ *  Return true if the year is leap year.
+ */
+bool isLeapYear(int year);
+
+
+/*
+ * Function: monthToString
+ * Usage: string str = monthToString(month);
+ * ----------------------------------------
+ *  Return the name of the month as a string.
+ */
+
+std::string monthToString(Month month);
+
+
+class Date {
+
+public:
+
+/*
+ * Function: Constructors
+ * Usage: Date date();
+ *        Date date(month, day, year);
+ *        Date date(day, month, year);
+ * ------------------------------------------
+ *  There are three constructors.
+ *  	1. The default constructor that sets the date to January 1, 1900.
+ *  	2. The second constructor that takes a month, day and year and intializes
+ *  	the date to contain those values. For ex: Date moonLanding(JULY, 20, 1969).
+ *  	3. An overloaded version of the constructor that takes the first two parameters
+ *  	in the opposite order. Ex: Date moonLanding(20, JULY, 1969).
+ */
+
+	Date();
+	Date(Month myMonth, int myDay, int myYear);
+	Date(int myDay, Month myMonth, int myYear);
+
+/*
+ * Function: Getters
+ * Usage: int num = date.getDay();
+ * 	  string str = date.getMonth();
+ * 	  int num = date.getYear();
+ * ----------------------------------------
+ *  Return the day, month and year.
+ */
+	int getDay();
+	Month getMonth();
+	int getYear();
+
+/*
+ * Fucntion: toString
+ * Usage: string str = date.toString()
+ * --------------------------------------
+ *  Return the date in the form of dd-mmm-yyyy.
+ */
+	std::string toString();
+
+
+/* Private section */
+
+private:
+
+	/* Instance variables */
+
+	int day;
+	Month month;
+	int year;
+};
+
+/*
+ * Function: Overload operator<<
+ * Usage: cout << date;
+ * ------------------------------
+ *  Overload the operator << to use the simplied version 
+ *  of cout << date.toString();
+ */
+
+std::ostream & operator<<(std::ostream & os, Date d);
+
+
+#endif

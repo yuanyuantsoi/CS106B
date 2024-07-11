@@ -13,11 +13,24 @@ link_directories(
 	${HOME}/../cpplib/lib
 	)
 
-set(MY_STATIC_LIBRARIES
+set(STANFORD_LIBRARIES
 	${HOME}/../cpplib/lib/libStanfordCPPLib.a
 	)
 
 add_executable(ex01 ${HOME}/src/ex01.cpp ${HOME}/src/domino.cpp)
+target_link_libraries(ex01 PRIVATE ${STANFORD_LIBRARIES})
 
-target_link_libraries(ex01 PRIVATE ${MY_STATIC_LIBRARIES})
+add_executable(ex02 ${HOME}/src/ex02.cpp ${HOME}/src/card.cpp)
+target_link_libraries(ex02 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex04 ${HOME}/src/ex04.cpp)
+target_link_libraries(ex04 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex05 ${HOME}/src/ex05.cpp ${HOME}/src/calendar.cpp)
+target_link_libraries(ex05 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex06 ${HOME}/src/ex06.cpp ${HOME}/src/calendar.cpp)
+target_link_libraries(ex06 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex07 ${HOME}/src/ex07.cpp ${HOME}/src/labelgen.cpp)
+target_link_libraries(ex07 PRIVATE ${STANFORD_LIBRARIES})
