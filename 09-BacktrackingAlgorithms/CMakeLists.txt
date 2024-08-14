@@ -9,8 +9,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 # Debug setup
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fvar-tracking")
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -fvar-tracking")
+#set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fvar-tracking")
+#set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -fvar-tracking")
 
 include_directories(
 	${HOME}/../cpplib/include
@@ -44,10 +44,10 @@ target_link_libraries(ex05 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex05update ${HOME}/src/ex05update.cpp)
 target_link_libraries(ex05update PRIVATE ${STANFORD_LIBRARIES})
-#[[
+
 add_executable(ex06 ${HOME}/src/ex06.cpp)
 target_link_libraries(ex06 PRIVATE ${STANFORD_LIBRARIES})
-
+#[[
 add_executable(ex07 ${HOME}/src/ex07.cpp ${HOME}/src/card.cpp)
 target_link_libraries(ex07 PRIVATE ${STANFORD_LIBRARIES})
 
