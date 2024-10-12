@@ -39,8 +39,8 @@ int main() {
 
 bool findAKnightsTour(Grid<int> & chessboard, Location start, int step) {
 	//Debug 
-	//cout << endl;
-	//cout << " step = " << step << endl;
+	cout << endl;
+	cout << " step = " << step << endl;
 	//printChessboard(chessboard);
 	
 	// Simple case
