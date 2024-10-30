@@ -18,8 +18,6 @@ using namespace std;
 int countFifteens(Vector<Card> & cards);
 int countSubsetSum(Vector<Card> & cards, int target);
 
-int countFifteens2(Vector<Card> & cards);
-
 /* Main program */
 
 int main() {
@@ -63,12 +61,3 @@ int countSubsetSum(Vector<Card> & cards, int target) {
 		return countSubsetSum(newDeck, target) + countSubsetSum(newDeck, target - rank);
 	}
 }
-
-
-/*
- * Function: countFifteens
- * Usage: int n = countFifteens(cards);
- * -----------------------------------------------------------------
- *  Introduce a new method to countFifteens without introduce a new
- *  function.
- */

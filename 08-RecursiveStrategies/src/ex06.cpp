@@ -10,7 +10,7 @@ using namespace std;
 
 /* Function prototypes */
 
-bool isMeasurable(int target, Vector<int> & weights);
+bool isMeasurable(int target, Vector<int> & weights, int index);
 
 /* Main program */
 
@@ -25,7 +25,7 @@ int main() {
 	cout << "};" << endl;
 	
 	for (int i = 0; i < 10; i++) {
-		cout << "isMeasurable(" << i << ", sampleWeights) = " << isMeasurable(i, sampleWeights) << endl;
+		cout << "isMeasurable(" << i << ", sampleWeights) = " << isMeasurable(i, sampleWeights, 0) << endl;
 	}
 	return 0;
 }
@@ -39,15 +39,13 @@ int main() {
  * set of weights.
  */
 
-bool isMeasurable(int target, Vector<int> & weights) {
-	if (weights.isEmpty()) {
+bool isMeasurable(int target, Vector<int> & weights, int index) {
+	if (index == weights.size()) {
 		return target == 0;
 	} else {
-		int first = weights[0];
-		Vector<int> rest = weights;
-		rest.remove(0);
-		return isMeasurable(target - first, rest) || isMeasurable(target + first, rest)
-			|| isMeasurable(target, rest);
+		return isMeasurable(target - weights[index], weights, index + 1) 
+			|| isMeasurable(target + weights[index], weights, index + 1)
+			|| isMeasurable(target, weights, index + 1);
 	}
 }
 

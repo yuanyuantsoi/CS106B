@@ -31,3 +31,12 @@ add_executable(gcd ${HOME}/src/GCD.cpp)
 add_executable(ismeasurable ${HOME}/src/IsMeasurable.cpp)
 add_executable(printinb ${HOME}/src/PrintInBinary.cpp)
 add_executable(canmakesum ${HOME}/src/CanMakeSum.cpp)
+add_executable(countways ${HOME}/src/CountWays.cpp)
+add_executable(drawruler ${HOME}/src/DrawRuler.cpp)
+add_executable(everyvotecounts ${HOME}/src/EveryVoteCounts.cpp)
+#add_executable(testlex ${HOME}/src/TestLexiconClass.cpp) doesn't work
+add_executable(testlex ${HOME}/src/TestLexicon.cpp)
+add_executable(listcompletions ${HOME}/src/ListCompletions.cpp)
+add_executable(recpuzzle ${HOME}/src/RecursivePuzzle.cpp)
+add_executable(stockcutting ${HOME}/src/StockCutting.cpp)
+

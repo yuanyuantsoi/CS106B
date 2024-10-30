@@ -24,17 +24,29 @@ target_link_libraries(ex01 PRIVATE ${STANFORD_LIBRARIES})
 add_executable(ex03 ${HOME}/src/ex03.cpp)
 target_link_libraries(ex03 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex03v2 ${HOME}/src/ex03v2.cpp)
+target_link_libraries(ex03v2 PRIVATE ${STANFORD_LIBRARIES})
+
 add_executable(ex04 ${HOME}/src/ex04.cpp)
 target_link_libraries(ex04 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex04v2 ${HOME}/src/ex04v2.cpp)
+target_link_libraries(ex04v2 PRIVATE ${STANFORD_LIBRARIES})
+
 add_executable(ex05 ${HOME}/src/ex05.cpp)
 target_link_libraries(ex05 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex05v2 ${HOME}/src/ex05v2.cpp)
+target_link_libraries(ex05v2 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex06 ${HOME}/src/ex06.cpp)
 target_link_libraries(ex06 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex07 ${HOME}/src/ex07.cpp ${HOME}/src/card.cpp)
 target_link_libraries(ex07 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex07v2 ${HOME}/src/ex07v2.cpp ${HOME}/src/card.cpp)
+target_link_libraries(ex07v2 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex08 ${HOME}/src/ex08.cpp)
 target_link_libraries(ex08 PRIVATE ${STANFORD_LIBRARIES})

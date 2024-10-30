@@ -31,7 +31,6 @@ int main() {
 	int target = getInteger("Enter target = ");
 
 	
-	int 
 
 	cout << "{3, 7, 1, 8, -3} can make " 
 		<< (canMakeSum(nums, target) ? "" : "not") 
