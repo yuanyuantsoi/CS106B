@@ -57,11 +57,20 @@ target_link_libraries(ex09 PRIVATE ${STANFORD_LIBRARIES})
 add_executable(ex092 ${HOME}/src/ex092.cpp)
 target_link_libraries(ex092 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex09v2 ${HOME}/src/ex09v2.cpp)
+target_link_libraries(ex09v2 PRIVATE ${STANFORD_LIBRARIES})
+
 add_executable(ex10 ${HOME}/src/ex10.cpp)
 target_link_libraries(ex10 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex10v2 ${HOME}/src/ex10v2.cpp)
+target_link_libraries(ex10v2 PRIVATE ${STANFORD_LIBRARIES})
+
 add_executable(ex11 ${HOME}/src/ex11.cpp)
 target_link_libraries(ex11 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex11v2 ${HOME}/src/ex11v2.cpp)
+target_link_libraries(ex11v2 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex12 ${HOME}/src/ex12.cpp)
 target_link_libraries(ex12 PRIVATE ${STANFORD_LIBRARIES})
@@ -72,8 +81,14 @@ target_link_libraries(ex13 PRIVATE ${STANFORD_LIBRARIES})
 add_executable(ex14 ${HOME}/src/ex14.cpp)
 target_link_libraries(ex14 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex14v2 ${HOME}/src/ex14v2.cpp)
+target_link_libraries(ex14v2 PRIVATE ${STANFORD_LIBRARIES})
+
 add_executable(ex15 ${HOME}/src/ex15.cpp)
 target_link_libraries(ex15 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex15v2 ${HOME}/src/ex15v2.cpp)
+target_link_libraries(ex15v2 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex16 ${HOME}/src/ex16.cpp)
 target_link_libraries(ex16 PRIVATE ${STANFORD_LIBRARIES})
@@ -81,11 +96,17 @@ target_link_libraries(ex16 PRIVATE ${STANFORD_LIBRARIES})
 add_executable(ex17 ${HOME}/src/ex17.cpp)
 target_link_libraries(ex17 PRIVATE ${STANFORD_LIBRARIES})
 
+add_executable(ex17v2 ${HOME}/src/ex17v2.cpp)
+target_link_libraries(ex17v2 PRIVATE ${STANFORD_LIBRARIES})
+
 add_executable(ex17ori ${HOME}/src/ex17orign.cpp)
 target_link_libraries(ex17ori PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex18 ${HOME}/src/ex18.cpp)
 target_link_libraries(ex18 PRIVATE ${STANFORD_LIBRARIES})
+
+add_executable(ex18v2 ${HOME}/src/ex18v2.cpp)
+target_link_libraries(ex18v2 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex18bp ${HOME}/src/ex18bp.cpp)
 target_link_libraries(ex18bp PRIVATE ${STANFORD_LIBRARIES})

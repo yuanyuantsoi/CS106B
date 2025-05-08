@@ -1,8 +1,8 @@
 /*
- * File: SolveMaze.cpp
+ * File: ex02.cpp
  * -------------------
- * This program solves a maze by recursive backtracking.
- * 参考Eric Roberts 和 zenglenn42(Github)代码。
+ * This program extends the solveMaze program so that it records the number of recursive
+ * calls as it proceeds.
  */
 
 #include <iostream>
@@ -20,23 +20,32 @@ const int NO_PATH = -1;
 
 /* Function prototypes */
 
-bool solveMaze(Maze & maze, Point pt);
+bool solveMaze(Maze & maze, Point pt, int & nCall);
+bool solveMazeNoUnmark(Maze & maze, Point pt, int & nCall);
 Point adjacentPoint(Point start, Direction dir);
-int shortestPathLength(Maze & maze, Point start);
-bool findAllPath(Maze & maze, Point start, int & length, Set<int> & pathLength);
 
 /* Main program */
 
 int main() {
    GWindow gw;
-   //Maze maze("Maze01.txt", gw);
-   Maze maze("Maze03.txt", gw);
-   if (solveMaze(maze, maze.getStartPosition())) {
+   Maze maze("SampleMaze2.txt", gw);
+   int nCall = 0;
+   if (solveMaze(maze, maze.getStartPosition(), nCall)) {
       cout << "The marked path is a solution." << endl;
    } else {
       cout << "No solution exists." << endl;
    }
+   cout << "solveMaze has been called " << nCall << " times." << endl;
    
+  GWindow gw2;
+   Maze maze2("SampleMaze2.txt", gw2);
+   int nCall2 = 0;
+   if (solveMazeNoUnmark(maze2, maze2.getStartPosition(), nCall2)) {
+      cout << "The marked path is a solution." << endl;
+   } else {
+      cout << "No solution exists." << endl;
+   }
+   cout << "solveMaze has been called " << nCall2 << " times." << endl;
 
    return 0;
 }
@@ -52,13 +61,14 @@ int main() {
  * and moving one step along each open passage.
  */
 
-bool solveMaze(Maze & maze, Point start) {
+bool solveMaze(Maze & maze, Point start, int & nCall) {
+	nCall++;
    if (maze.isOutside(start)) return true;
    if (maze.isMarked(start)) return false;
    maze.markSquare(start);
    for (Direction dir = NORTH; dir <= WEST; dir++) {
       if (!maze.wallExists(start, dir)) {
-         if (solveMaze(maze, adjacentPoint(start, dir))) {
+         if (solveMaze(maze, adjacentPoint(start, dir), nCall)) {
             return true;
          }
       }
@@ -67,53 +77,25 @@ bool solveMaze(Maze & maze, Point start) {
    return false;
 }
 
-/*
- * Function: shortestPathLength
- * Usage: int length = shortestPathLength(Maze & maze, Point start);
- * ------------------------------------------------------------------------
- *  Returns the length of the shortest path in the maze form the specifies position 
- *  to any exit. If there is no solution, shortestPathLength should return -1.
- */
-
-int shortestPathLength(Maze & maze, Point start) {
-	Set<int> pathLength;
-	int length = 0;
-	findAllPath(maze, start, length, pathLength);
-	if (pathLength.size() == 0) {
-		return NO_PATH;
-	} else {
-		return pathLength.first();
-	}
-}
-
-bool findAllPath(Maze & maze, Point start, int & length, Set<int> & pathLength) {
+bool solveMazeNoUnmark(Maze & maze, Point start, int & nCall) {
+	nCall++;
    if (maze.isOutside(start)) return true;
    if (maze.isMarked(start)) return false;
    maze.markSquare(start);
-   length++;
-   cout << "length = " << length << endl;
-   waitForClick();
-
+   //bool possibility = true;
    for (Direction dir = NORTH; dir <= WEST; dir++) {
-      if (!maze.wallExists(start, dir)) {
-         if (findAllPath(maze, adjacentPoint(start, dir), length, pathLength)) {
-           	pathLength.add(length);
-		cout << "Add " << length << " to set." << endl;
-		waitForClick();
-		break;
-         }
+     // cout << "Direction = " << dir << endl;
+	if (!maze.wallExists(start, dir)) {
+	 if (solveMazeNoUnmark(maze, adjacentPoint(start, dir), nCall)) {
+            return true;
+	 }
       }
+     // if (dir == WEST) possibility = false;
+     // cout << "possibility = " << possibility << endl;
    }
-   maze.unmarkSquare(start);
-   length--;
-   cout << "length = " << length << endl;
-   waitForClick();
+   //if (possibility) maze.unmarkSquare(start);
    return false;
 }
-
-
-
-
 
 /*
  * Function: adjacentPoint

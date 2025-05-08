@@ -51,7 +51,6 @@ void generatePermutations(string & str, int index) {
 			swapCharacter(str, i, index);
 		}
 	}
-	return;
 }
 
 /*
