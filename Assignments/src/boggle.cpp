@@ -3,10 +3,18 @@
  * Your name here!
  */
  
-#include "genlib.h"
+#include "console.h"
 #include "simpio.h"
 #include <iostream>
-#include "extgraph.h"
+#include "gwindow.h"
+#include "strlib.h"
+#include "gobjects.h"
+#include "gboggle.h"
+using namespace std;
+
+/* Constants */
+const double GWINDOW_WIDTH = 1200;
+const double GWINDOW_HEIGHT = GWINDOW_WIDTH / 3 + 70;
 
 string StandardCubes[16]  = 
 {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
@@ -30,8 +38,7 @@ void GiveInstructions()
 	 << "points, and so on. After your puny brain is exhausted, I, the super computer, "
 	 << "will find all the remaining words and double or triple your paltry score." << endl;
 	
-    cout << "\nHit return when you're ready...";
-    GetLine();
+    string str = getLine("\nHit return when you're ready...");
 }
 
 static void Welcome()
@@ -45,9 +52,13 @@ static void Welcome()
 
 int main()
 {
-	SetWindowSize(9, 5);
-	InitGraphics();
-	Welcome();
-	GiveInstructions();
+	Welcome(); //Printed in a sepreate console.
+	GiveInstructions(); //Printed in a sepreate console.
+    clearConsole();
+    GWindow gw(GWINDOW_WIDTH, GWINDOW_HEIGHT); //Game board Layout
+    //GLabel *label = new GLabel("Hello", 100.0, 100.0); 
+    //label->setFont("Serif-24");
+    //gw.draw(label);
+    DrawBoard(gw, 4, 4);
 	return 0;
 }
