@@ -1,0 +1,297 @@
+/* File: boggle.cpp
+ * ----------------
+ * Your name here!
+ */
+
+#include "console.h"
+#include "simpio.h"
+#include <iostream>
+#include <string>
+#include <cctype>
+#include "gwindow.h"
+#include "strlib.h"
+#include "gobjects.h"
+#include "gboggle.h"
+#include "grid.h"
+#include "random.h"
+#include "simpio.h"
+#include "set.h"
+#include "vector.h"
+#include "lexicon.h"
+using namespace std;
+
+/* Constants */
+const double GWINDOW_WIDTH = 1200;
+const double GWINDOW_HEIGHT = GWINDOW_WIDTH / 3 + 70;
+const int BOARD_SIZE = 4;
+const double PAUSE_TIME = 1000;
+
+struct posT{
+	int row;
+	int col;
+};
+
+string StandardCubes[16]  = 
+{"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
+ "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
+ 
+string BigBoggleCubes[25]  = 
+{"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY", 
+"BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR", 
+"DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
+
+void GiveInstructions()
+{
+    cout << endl << "The boggle board is a grid onto which I will randomly distribute " 
+	 << "cubes. These 6-sided cubes have letters rather than numbers on the faces, " 
+	 << "creating a grid of letters on which you try to form words. You go first, " 
+	 << "entering all the words you can find that are formed by tracing adjoining " 
+	 << "letters. Two letters adjoin if they are next to each other horizontally, " 
+	 << "vertically, or diagonally. A letter can only be used once in the word. Words "
+	 << "must be at least 4 letters long and can only be counted once. You score points "
+	 << "based on word length: a 4-letter word is worth 1 point, 5-letters earn 2 "
+	 << "points, and so on. After your puny brain is exhausted, I, the super computer, "
+	 << "will find all the remaining words and double or triple your paltry score." << endl;
+	
+    string str = getLine("\nHit return when you're ready...");
+}
+
+static void Welcome()
+{
+    cout << "Welcome!  You're about to play an intense game of mind-numbing Boggle. " 
+	 << "The good news is that you might improve your vocabulary a bit.  The "
+	 << "bad news is that you're probably going to lose miserably to this little "
+	 << "dictionary-toting hunk of silicon.  If only YOU had a gig of RAM..." << endl << endl;
+}
+
+/* Function prototypes */
+static void setUpBoard(GWindow & gw, Grid<char> & board, int size);
+static void getCubesLetter(Grid<char> & board);
+static void getUserDefinedCubesLetter(Grid<char> & board);
+static void getSystemDefinedCubesLetter(Grid<char> & board);
+static void initializeCubes(Grid<string> & cubes);
+static void shakeCubes(Grid<string> & cubes, Grid<char> & front);
+static void addLettersToBoard(GWindow & gw, Grid<char> & board);
+static void humanTurn(GWindow & gw, Grid<char> & board, Lexicon & english);
+static bool isValidWord(string str, Set<string> & list, Lexicon & english);
+static bool foundOnBoard(string word, Grid<char> & board, Grid<bool> & used);
+static bool recFoundOnBoard(string left, int row, int col, Grid<char> & board, Grid<bool> & used);
+static bool inBounds(int numR, int numC, int r, int c);
+static void computerTurn(GWindow & gw, Grid<char> & board, Lexicon & english);
+static bool recFoundAllWords(GWindow & gw, string prefix, int row, int col, Grid<char> & board, Grid<bool> & used, Lexicon & english, Set<string> & wordsList);
+static void highlightFoundWord(GWindow & gw, Grid<bool> & used);
+static void highlightCube(GWindow & gw, Grid<bool> & cubes);
+static void hightlightCubes(GWindow & gw, Grid<bool> & cubes);
+static void removeHighlight(GWindow & gw, Grid<bool> & cubes);
+static void highlightCubes(GWindow & gw, Grid<bool> & cubes, bool remove);
+static Vector<posT> getAdjacentCubes(int numRows, int numCols, int row, int col);
+
+int main()
+{
+    Welcome(); //Printed in a sepreate console.
+    GiveInstructions(); //Printed in a sepreate console.
+    clearConsole();
+    GWindow gw(GWINDOW_WIDTH, GWINDOW_HEIGHT); //Game board Layout
+    Lexicon english("EnglishWords.txt");
+    int boardSize = getInteger("Please enter the board size: ");
+    Grid<char> board(BOARD_SIZE, BOARD_SIZE);
+    setUpBoard(gw, board, BOARD_SIZE);
+ //   computerTurn(gw, board, english);
+ //   humanTurn(gw, board, english);
+    return 0;
+}
+
+static void setUpBoard(GWindow & gw, Grid<char> & board, int size) {
+	DrawBoard(gw, size, size);
+	getCubesLetter(Grid<char> & board);
+	addLettersToBoard(gw, board);
+}
+
+static void getCubesLetter(Grid<char> & board) {
+	string input = toLowerCase(getLine("Enter y/n to get a custom board configuration: "));
+	if (input == "y" || input == "yes") {
+		getUserDefinedCubesLetter(board);
+	} else {
+		getSystemDifinedCubesLetter(board);
+	}
+}
+
+static void getUserDefinedCubesLetter(Grid<char> & board) {
+	string letters;
+	while (true) {
+		letters = getLine("Enter the letters for cubes from left to right, top to bottom: ");
+		if (letters.size() >= (board.numRows() * board.numCols())) break;
+		cout << "The string entered is too short to fill the board. Please try again." << endl;
+	}
+	fillBoardWithString(letters, board);
+}
+
+
+
+
+
+
+static Vector<posT> getAdjacentCubes(int numRows, int numCols, int row, int col){
+	Vector<posT> cubes;
+	for (int r = row - 1; r <= row + 1; r++) {
+		for (int c = col - 1; c <= col + 1; c++) {
+			if ((r == row) && (c == col) ) continue;
+			if (inBounds(numRows, numCols, r, c)) {
+				posT newCube;
+				newCube.row = r;
+				newCube.col = c;
+				cubes.add(newCube);
+			}
+		}
+	}
+	return cubes;
+}
+
+static bool recFoundAllWords(GWindow & gw, string prefix, int row, int col, Grid<char> & board, Grid<bool> & used, Lexicon & english, Set<string> & wordsList) {
+	prefix = toLowerCase(prefix);
+	// Simple case
+	if (!english.containsPrefix(prefix)) return false;
+	if (isValidWord(prefix, wordsList, english)) {
+		wordsList.add(prefix);
+		RecordWordForPlayer(gw, prefix, Computer);
+		highlightFoundWord(gw, used);
+	}
+
+	// Recursive case
+	Vector<posT> cubesList = getAdjacentCubes(board.numRows(), board.numCols(), row, col);
+	for (int i = 0; i < cubesList.size(); i++) {
+		int newR = cubesList[i].row;
+		int newC = cubesList[i].col;
+		if (used[newR][newC] == false) {
+			used[newR][newC] = true;
+			recFoundAllWords(gw, prefix + board[newR][newC], newR, newC, board, used, english, wordsList);
+			used[newR][newC] = false;
+		}
+	}
+}
+
+
+
+static void computerTurn(GWindow & gw, Grid<char> & board, Lexicon & english) {
+	Grid<bool> used(board.numRows(), board.numCols());
+	Set<string> wordsList;
+	for (int row = 0; row < board.numRows(); row++) {
+		for (int col = 0; col < board.numCols(); col++) {
+			board[row][col] = true;
+			recFoundAllWords(gw, "" + board[row][col], row, col, board, used, english, wordsList);
+			board[row][col] = false;
+		}
+	}
+}
+
+static void highlightCubes(GWindow & gw, Grid<bool> & cubes, bool remove) {
+	for (int r = 0; r < cubes.numRows(); r++) {
+		for (int c = 0; c < cubes.numCols(); c++) {
+			if (cubes[r][c]) HighlightCube(gw, r, c, remove);
+		}
+	}
+}
+
+static void removeHighlight(GWindow & gw, Grid<bool> & cubes){
+	highlightCubes(gw, cubes, true);
+}
+
+static void hightlightCubes(GWindow & gw, Grid<bool> & cubes) {
+	highlightCubes(gw, cubes, false);
+}
+
+static void highlightFoundWord(GWindow & gw, Grid<bool> & used) {
+	highlightCubes(gw, used);
+	pause(PAUSE_TIME);
+	removeHightlight(gw, used);
+}
+
+static bool inBounds(int numR, int numC, int r, int c) {
+	return ((r >=0) && (r < numR) && (c >= 0) && (c < numC));
+}
+
+static bool recFoundOnBoard(string left, int row, int col, Grid<char> & board, Grid<bool> & used) {
+	// Simple Case
+	if (left.empty()) return true;
+
+	// Recursive Case
+	for (int i = row - 1; i <= row + 1; i++) {
+		for (int j = col - 1; j <= col + 1; j++) {
+			if ((i == row) && (j == col)) continue;
+			if (inBounds(board.numRows(), board.numCols(), i, j) && (board[i][j] == left[0])) {
+				used[i][j] = true;
+				if (recFoundOnBoard(left.substr(1), i, j, board, used)) return true;
+				used[i][j] = false;
+			}
+		}
+	}
+	return false;
+}
+
+static bool foundOnBoard(string word, Grid<char> & board, Grid<bool> & used) {
+	for (int row = 0; row < board.numRows(); row++) {
+		for (int col = 0; col < board.numCols(); col++) {
+			if (word[0] == board[row][col]) {
+				used[row][col] = true;
+				if (recFoundOnBoard(word.substr(1), row, col, board, used))
+					return true;
+				else used[row][col] = false;
+			}
+		}
+	}
+	cout << word << " can't be found on the board. Please Try again." << endl;
+	return false;
+}
+
+static bool isValidWord(string str, Set<string> & set, Lexicon & english) {
+	return ((!set.contains(str)) && (str.length() > 3) && (english.contains(str)));
+}
+	
+static void humanTurn(GWindow & gw, Grid<char> & board, Lexicon & english) {
+	cout << "It's your turn to find all the words!" << endl;
+	Set<string> list;
+	while (true) {
+		string input = getLine("Enter the word you find: ");
+		if (input == "") break;
+		Grid<bool> used(board.numRows(), board.numCols());
+		if (isValidWord(input, list, english) && foundOnBoard(input, board, used)) {
+			cout << used.toString() << endl;
+			highlightFoundWord(gw, used);
+			list.add(toLowerCase(input));
+			RecordWordForPlayer(gw, input, Human);
+		} else {
+			cout << "Invalid word. Please try again." << endl;
+		}
+
+	}
+}	
+
+static void addLettersToBoard(GWindow & gw, Grid<char> & board) {
+	for (int row = 0; row < board.numRows(); row++) {
+		for (int col = 0; col < board.numCols(); col++) {
+			LabelCube(gw, row, col, board[row][col]);
+		}
+	}
+}
+
+static void shakeCubes(Grid<string> & cubes, Grid<char> & front) {
+	for (int row = 0; row < cubes.numRows(); row++) {
+		for (int col = 0; col < cubes.numCols(); col++) {
+			int randR = randomInteger(row, cubes.numRows() - 1);
+			int randC = randomInteger(col, cubes.numCols() - 1);
+			string tmp = cubes[randR][randC];
+			cubes[randR][randC] = cubes[row][col];
+			cubes[row][col] = tmp;
+			front[row][col] = tmp.at(randomInteger(0, tmp.length() - 1));
+		}
+	}
+}
+
+
+static void initializeCubes(Grid<string> & cubes){ 
+	for (int row = 0; row < cubes.numRows(); row++) {
+		for (int col = 0; col < cubes.numCols(); col++) {
+			cubes[row][col] = StandardCubes[row * cubes.numRows() + col];
+		}
+	}
+}

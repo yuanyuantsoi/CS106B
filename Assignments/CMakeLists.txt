@@ -34,9 +34,9 @@ add_executable(canmakesum ${HOME}/src/CanMakeSum.cpp)
 add_executable(countways ${HOME}/src/CountWays.cpp)
 add_executable(drawruler ${HOME}/src/DrawRuler.cpp)
 add_executable(everyvotecounts ${HOME}/src/EveryVoteCounts.cpp)
-#add_executable(testlex ${HOME}/src/TestLexiconClass.cpp) doesn't work
-add_executable(testlex ${HOME}/src/TestLexicon.cpp)
 add_executable(listcompletions ${HOME}/src/ListCompletions.cpp)
 add_executable(recpuzzle ${HOME}/src/RecursivePuzzle.cpp)
 add_executable(stockcutting ${HOME}/src/StockCutting.cpp)
-
+add_executable(boggle ${HOME}/src/boggle.cpp ${HOME}/src/gboggle.cpp)
+#add_executable(sound ${HOME}/src/testSound.cpp)
+add_executable(testIO ${HOME}/src/testIO.cpp)

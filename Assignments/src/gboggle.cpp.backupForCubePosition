@@ -20,7 +20,7 @@ const string SCORE_FONT = "Helvetica";     // Font for scoreboard names & scores
 const int SCORE_FONT_SIZE = 50;
 const string WORD_FONT = "Geneva";         // Font for word lists
 const double WORD_FONT_SIZE = 20;
-const double WORD_COLUMN_WIDTH = 130;
+const double WORD_COLUMN_WIDTH = 80;
 const double LINEWIDTH = 3.5;                //Line Width of the score box line
 
 const string BOARD_COLOR = "#FFDB0D";
@@ -54,7 +54,6 @@ static void DrawAndFillRoundedRect(GWindow & gw, double x, double y, double w, d
 static double CubeX(int col);
 static double CubeY(int row);
 static void DrawCenteredChar(GWindow & gw, double centerX, double centerY, char ch, string color);
-static string getCubeString(char ch);
 static GLabel * DrawPlayerLabel(GWindow & gw, playerT player, string name);
 void LabelCube(GWindow & gw, int row, int col, char letter);
 void HighlightCube(GWindow & gw, int row, int col, bool flag);
@@ -136,22 +135,14 @@ static void DrawCube(GWindow & gw, int row, int col, char ch, bool invert) {
 }
 
 static void DrawCenteredChar(GWindow & gw, double centerX, double centerY, char ch, string color) {
-    string s = getCubeString(ch);
-    GLabel *label = new GLabel(s);
+    string s = string(1, ch);
+    GLabel *label = new GLabel(toUpperCase(s));
     string font = CUBE_FONT + "-bold-" + integerToString(gState.cubeFontSize); 
     label->setFont(font);   // setFont中font size 为小数时，该指令无效
     label->setColor(color);
-    if (s == "Qu") {
-            label->scale(0.9, 1);
-    }
     double x = centerX - label->getWidth() / 2.0;
     double y = centerY + label->getHeight() / 2.0 - label->getFontDescent();
     gw.add(label, x, y);
-}
-
-static string getCubeString(char ch) {
-	if (tolower(ch) == 'q') return "Qu";
-	else return string(1, toupper(ch));
 }
 
 static GLabel * DrawPlayerLabel(GWindow & gw, playerT player, string name) {
@@ -195,8 +186,7 @@ static double CubeX(int col) {
 }
 
 static double CubeY(int row) {
-	//eturn gState.board.y + gState.board.h - BOARD_BORDER / 2.0 - gState.cubeSize * (row + 1);
-	return gState.board.y + gState.cubeSize * row + BOARD_BORDER / 2.0;
+    return gState.board.y + gState.board.h - BOARD_BORDER / 2.0 - gState.cubeSize * (row + 1);
 }
 
 static void FillBox(GWindow & gw, double x, double y, double w, double h, string color){
