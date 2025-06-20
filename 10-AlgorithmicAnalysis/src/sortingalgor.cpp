@@ -18,8 +18,9 @@ static bool swap(Vector<int> & vec, int i, int j);
 static Vector<int> mergeSort(Vector<int> & vec);
 static Vector<int> recMergeSort(Vector<int> & vec, int startIndex, int endIndex);
 static Vector<int> merge(Vector<int> & vec1, Vector<int> & vec2);
-static Vector<int> quickSort(Vector<int> & vec);
-static Vector<int> easyMerge(Vector<int> & lHalf, Vector<int> & hHalf);
+static void quickSort(Vector<int> & vec);
+static void recQuickSort(Vector<int> & vec, int start, int finish);
+static int partition(Vector<int> & vec, int start, int finish);
 
 int main() {
 	Vector<int> vec1, vec2, vec3;
@@ -45,9 +46,9 @@ int main() {
 	cout << vec3.toString() << endl;
 
 	// Quick sort
-	Vector<int> sortedVec3 = quickSort(vec3);
+	quickSort(vec3);
 	cout << "Sorted Vector(quick sort): " << endl;
-	cout << sortedVec3.toString() << endl;
+	cout << vec3.toString() << endl;
 	return 0;
 }
 
@@ -176,30 +177,52 @@ static Vector<int> merge(Vector<int> & vec1, Vector<int> & vec2){
  *  2. recursively sort each half
  *  3. join two haves together
  */
-static Vector<int> quickSort(Vector<int> & vec) {
-	if (vec.size() == 1) return vec;
-	int boundary = vec[0];
-	Vector<int> lowHalf, highHalf;
-	for (int i = 0; i < vec.size(); i++) {
-		if (vec[i] < boundary) {
-			lowHalf.add(vec[i]);
-		} else {
-			highHalf.add(vec[i]);
-		}
-	}
-	return easyMerge(lowHalf, highHalf);
+static void quickSort(Vector<int> & vec) {
+    recQuickSort(vec, 0, vec.size() - 1);
 }
 
 /*
- * Function: easyMerge
- * Usage: Vector<int> vec = easyMerge(lHalf, hHalf);
- * --------------------------------------------------
- *  Merge the lower half and higher half by containcating
- *  two halve together.
+ * Function: recQuickSort
+ * Usage: recQuickSort(vec, start, finish);
+ * --------------------------------------------------------
+ *  Recursively call the recQuickSort to quick sort the vector.
+ *  Parameters start and finish mark the boundry of the vecotr that 
+ *  needs to be sorted.
  */
-static Vector<int> easyMerge(Vector<int> & lHalf, Vector<int> & hHalf) {
-	lHalf += hHalf;
-	return lHalf;
+static void recQuickSort(Vector<int> & vec, int start, int finish) {
+    if (start >= finish) return; // has only one/no element, no need to sort
+    int boundary = partition(vec, start, finish);
+    recQuickSort(vec, start, boundary - 1);
+    recQuickSort(vec, boundary + 1, finish);
 }
 
+/*
+ * Function: partition
+ * Usage: int boundary = partition(vec, start, finish);
+ * ----------------------------------------------------------------
+ *  This function implement the main part of the quick sort funcion.
+ *  The algorithm followed:
+ *  1. choose the number at index 0 as "pivot"
+ *  2. use right hand to point at the end of the vector - finish
+ *  4. use left hand to point at the number right behind the pivot
+ *  5. move rh until it find one number that is less than the pivot
+ *  6. move lf until it find one number that is larger than the pivot
+ *  7. swap these two number
+ *  8. keep looking untill rh = lh, swap pivot and the current number.
+ *  9. return the index of the pivot.
+ */
+static int partition(Vector<int> & vec, int start, int finish) {
+    int pivot = vec[start];
+    int lh = start + 1;
+    int rh = finish;
+    while (true) {
+        while ((vec[rh] >= pivot) && (lh < rh)) rh--;
+        while ((vec[lh] < pivot) && (lh < rh)) lh++;
+        if (rh == lh) break;
+        swap(vec, lh, rh);
+    }
+    if (vec[lh] >= pivot) return start;
+    swap(vec, start, lh);
+    return lh;
+}
 
