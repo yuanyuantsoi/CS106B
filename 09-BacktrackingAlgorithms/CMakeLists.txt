@@ -43,8 +43,8 @@ target_link_libraries(ex03 PRIVATE ${STANFORD_LIBRARIES})
 add_executable(ex05 ${HOME}/src/ex05.cpp)
 target_link_libraries(ex05 PRIVATE ${STANFORD_LIBRARIES})
 
-add_executable(ex05v2 ${HOME}/src/ex05v2.cpp)
-target_link_libraries(ex05v2 PRIVATE ${STANFORD_LIBRARIES})
+#add_executable(ex05v2 ${HOME}/src/ex05v2.cpp)
+#target_link_libraries(ex05v2 PRIVATE ${STANFORD_LIBRARIES})
 
 add_executable(ex05update ${HOME}/src/ex05update.cpp)
 target_link_libraries(ex05update PRIVATE ${STANFORD_LIBRARIES})

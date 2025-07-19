@@ -6,17 +6,9 @@ set(HOME ${CMAKE_SOURCE_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${HOME}/bin)
 set(CMAKE_CXX_STANDARD 11)
 
-include_directories(
-	${HOME}/../cpplib/include
-	)
-
-link_directories(
-	${HOME}/../cpplib/lib
-	)
-
-set(STANFORD_LIBRARIES
-	${HOME}/../cpplib/lib/libStanfordCPPLib.a
-	)
+include_directories(${HOME}/../cpplib/include)
+link_directories(${HOME}/../cpplib/lib)
+set(STANFORD_LIBRARIES ${HOME}/../cpplib/lib/libStanfordCPPLib.a)
 
 add_executable(ex01 ${HOME}/src/ex01.cpp ${HOME}/src/domino.cpp)
 target_link_libraries(ex01 PRIVATE ${STANFORD_LIBRARIES})
